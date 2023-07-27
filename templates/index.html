@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskBlog</title>
+</head>
+
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h1>{% block title %} Welcome to Hope4All {% endblock %}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Somme Promise</th>
+                <th>Date de Promesse</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for don in dons %}
+            <tr>
+                <td><a href="{{ url_for('don', don_id=don['id']) }}">
+                        {{ don['id'] }}</a></td>
+                <td>{{ don['nom'] }}</td>
+                <td>{{ don['prenom'] }}</td>
+                <td>{{ don['somme_promise'] }}</td>
+                <td>{{ don['date_promesse'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+
+</html>

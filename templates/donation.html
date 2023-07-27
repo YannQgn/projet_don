@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Somme Promise</th>
+                <th>Date de Promesse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ don['nom'] }}</td>
+                <td>{{ don['prenom'] }}</td>
+                <td>{{ don['somme_promise'] }}</td>
+                <td>{{ don['date_promesse'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+
+</html>

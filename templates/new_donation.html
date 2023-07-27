@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{% block title %} Faire une donation {% endblock %}</h1>
+<form method="GET" action="{{ url_for('donation_confirmed')}}">
+    <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" placeholder="Votre nom" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" name="prenom" placeholder="Votre prénom" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" name="adresse" placeholder="Votre adresse" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" placeholder="Votre adresse e-mail" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="somme_promise">Somme promise</label>
+        <input type="number" name="somme_promise" placeholder="Montant promis" class="form-control" required>
+    </div>
+
+    <div class="form-group"> <button type="submit" class="btn btn-primary">Submit</button> </div>
+</form>
+{% endblock %}
