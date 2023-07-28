@@ -8,25 +8,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css "
         integrity="sha384- ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'footer.css') }}">
     <title>{% block title %} {% endblock %}</title>
+    <style>
+        .navbar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .navbar-brand {
+            float: left;
+        }
+
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-toggler {
+            border-color: #e0e0e0;
+        }
+
+        .navbar-nav {
+            margin-left: 0;
+        }
+
+        .nav-link {
+            color: #333333;
+            font-size: 1.15rem;
+        }
+
+        .nav-link:hover {
+            color: #000000;
+        }
+
+        .nav-item.active .nav-link {
+            color: #000000;
+        }
+
+        .logo {
+            width: 100px;
+        }
+
+        #navbarNav {
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light"> <a class="navbar-brand"
-            href="{{ url_for('index')}}"><img class="logo" src="{{ url_for('static', filename= 'hope4all full.png') }}"
-                alt=""></a>
+            href="{{ url_for('index')}}"><img class="logo"
+                src="{{ url_for('static', filename= 'hope4all full no bg.png') }}" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data- target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria- label="Toggle navigation"> <span
                 class="navbar-toggler-icon"></span> </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active"> <a class="nav-link" href="#">A propos</a> </li>
+                <li class="nav-item active"> <a class="nav-link" href="{{url_for('index')}}">Accueil</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="{{url_for('new_donation')}}">Je fais un don</a> </li>
+                {% if 'loggedin' in session %}
+                <li class="nav-item"> <a class="nav-link" href="{{url_for('admin_donations')}}">Voir les donateurs</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="{{url_for('logout')}}">Me déconnecter</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#" style="color:black">Vous êtes connecté(e) en tant que
+                        {{
+                        session['username'] }}</a>
+                </li>
+                {% else %}
+                <li class="nav-item"> <a class="nav-link" href="{{url_for('donations')}}">Voir les donateurs</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link" href="{{url_for('login')}}">Me connecter</a> </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
     <div class="container"> {% block content %} {% endblock %} </div>
-    <!-- Optional JavaScript --> <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <div class="donation">
+        <a href="{{url_for('new_donation')}}" title="Je donne">🤝</a>
+    </div>
+    <style>
+        .toast {
+            position: fixed;
+            bottom: 70px;
+            left: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            opacity: 1;
+            transition: 1s;
+        }
+
+        .toast:not(:last-child) {
+            margin-bottom: 2.75rem;
+        }
+    </style>
+
+    <script>
+        function showToast(message, duration) {
+            const toastElement = document.createElement('div');
+            toastElement.classList.add('toast');
+            toastElement.innerText = message;
+            document.body.appendChild(toastElement);
+
+            // Update the message with time remaining
+            const timeRemainingElement = document.createElement('span');
+            timeRemainingElement.innerText = `${duration / 1000}s`;
+            toastElement.appendChild(timeRemainingElement);
+
+            // Update the time remaining every second
+            const intervalId = setInterval(() => {
+                duration -= 1000;
+                timeRemainingElement.innerText = ` ${duration / 1000}s`;
+                if (duration <= 0) {
+                    clearInterval(intervalId);
+                    document.body.removeChild(toastElement);
+                }
+            }, 1000);
+        }
+
+        const dernierDon = JSON.parse('{{ dernier_don | tojson | safe }}');
+        const datePromesse = new Date(dernierDon.date_promesse);
+        const heurePromesse = datePromesse.getHours();
+        const minutes = datePromesse.getMinutes();
+        const message = `Merci à ${dernierDon.prenom} ${dernierDon.nom} pour son don de ${dernierDon.somme_promise}€ à ${heurePromesse}h${minutes} ❤️`;
+        const duration = 5000;
+        showToast(message, duration);
+
+    </script>
+    </script>
+    {% extends 'footer.html' %}
     <script src=https://code.jquery.com/jquery-3.3.1.slim.min.js
         integrity="sha384 q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

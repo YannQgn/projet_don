@@ -6,7 +6,11 @@
         <label for="nom">Nom</label>
         <input type="text" name="nom" placeholder="Votre nom" class="form-control" required>
     </div>
-
+    <div class="form-group">
+        <label for="pseudo"
+            title="Si vous saisissez un pseudo, votre nom et prénom ne seront pas affichés plus tard.">Pseudo**</label>
+        <input type="text" name="pseudo" placeholder="Votre pseudo" class="form-control">
+    </div>
     <div class="form-group">
         <label for="prenom">Prénom</label>
         <input type="text" name="prenom" placeholder="Votre prénom" class="form-control" required>
@@ -26,7 +30,10 @@
         <label for="somme_promise">Somme promise</label>
         <input type="number" name="somme_promise" placeholder="Montant promis" class="form-control" required>
     </div>
-
+    <div class="form-group">
+        <input type="checkbox" name="conditions" id="conditions" required>
+        <label for="conditions">J'ai pris connaissance des <a href="{{ url_for('conditions') }}">conditions</a></label>
+    </div>
     <div class="form-group"> <button type="submit" class="btn btn-primary">Submit</button> </div>
 </form>
 {% endblock %}

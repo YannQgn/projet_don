@@ -3,36 +3,229 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>FlaskBlog</title>
+    <title>Hope4All - Ensemble pour un monde meilleur</title>
+    <style>
+        header {
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+        .cause-section {
+            text-align: center;
+        }
+
+        .cause-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fa9372;
+        }
+
+        .cause-section p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .mission h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ef709b;
+        }
+
+        .mission p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .donate-section {
+            background-color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .donate-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #fa9372;
+        }
+
+        .donate-section p {
+            font-size: 20px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .donate-button {
+            background-color: #ef709b;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .donate-button:hover {
+            background-color: #ee4d82;
+        }
+
+        .cause-section img {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .mission ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mission li {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .donate-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .donate-section .donate-button {
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .donate-section .donate-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 
 <body>
     {% extends 'base.html' %}
     {% block content %}
-    <h1>{% block title %} Welcome to Hope4All {% endblock %}</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Somme Promise</th>
-                <th>Date de Promesse</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for don in dons %}
-            <tr>
-                <td><a href="{{ url_for('don', don_id=don['id']) }}">
-                        {{ don['id'] }}</a></td>
-                <td>{{ don['nom'] }}</td>
-                <td>{{ don['prenom'] }}</td>
-                <td>{{ don['somme_promise'] }}</td>
-                <td>{{ don['date_promesse'] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <header>
+        <h1>Hope4All</h1>
+        <p>Ensemble pour un monde meilleur</p>
+    </header>
+
+    <div class="cause-section">
+        <h2>Lutte contre la Faim</h2>
+        <img src="https://pour.press/wp-content/uploads/2020/08/faim-1024x563.jpg" alt="Lutte contre la Faim">
+        <p>Nous sommes une association caritative engagée dans la lutte contre la faim et la malnutrition dans le monde.
+            Chaque jour, des millions de personnes souffrent de la faim et nous croyons que chaque don compte pour faire
+            une différence. Ensemble, nous pouvons nourrir les plus démunis et leur redonner espoir.</p>
+        <div class="mission">
+            <h3>Notre Mission</h3>
+            <p>Notre mission est de fournir des repas nutritifs et équilibrés aux personnes dans le besoin. Nous
+                travaillons avec des partenaires locaux pour distribuer de la nourriture et des provisions aux familles
+                affamées, aux enfants malnutris et aux personnes vulnérables.</p>
+        </div>
+    </div>
+
+    <div class="cause-section">
+        <h2>Éducation pour Tous</h2>
+        <img src="https://www.sergegouteyron-rotary.org/blog/wp-content/uploads/2014/05/Capture.jpg"
+            alt="Éducation pour Tous">
+        <p>Nous croyons que l'éducation est la clé pour sortir de la pauvreté et créer un avenir meilleur. C'est
+            pourquoi
+            nous nous engageons à fournir une éducation de qualité aux enfants défavorisés et aux communautés
+            marginalisées. En leur donnant accès à l'éducation, nous leur offrons une chance de réaliser leur plein
+            potentiel et de briser le cycle de la pauvreté.</p>
+        <div class="mission">
+            <h3>Notre Mission</h3>
+            <p>Notre mission est de soutenir l'éducation pour tous en fournissant des fournitures scolaires, des
+                bourses d'études et des infrastructures éducatives aux écoles et aux communautés défavorisées. Nous
+                croyons que chaque enfant mérite d'avoir accès à une éducation de qualité, quel que soit son
+                arrière-plan.</p>
+        </div>
+    </div>
+
+    <div class="cause-section">
+        <h2>Soins de Santé pour les Plus Vulnérables</h2>
+        <img src="https://pbs.twimg.com/media/Ds61ut7WsAE8ZYW?format=jpg&name=4096x4096"
+            alt="Soins de Santé pour les Plus Vulnérables">
+        <p>L'accès aux soins de santé est un droit fondamental. Nous œuvrons pour fournir des soins médicaux et des
+            services
+            de santé aux populations les plus vulnérables. Ensemble, nous pouvons apporter un soulagement et un soutien
+            aux
+            personnes dans le besoin.</p>
+        <div class="mission">
+            <h3>Notre Mission</h3>
+            <p>Notre mission est de fournir des soins médicaux essentiels, des médicaments et des traitements aux
+                personnes
+                souffrant de maladies et de conditions de santé graves. Nous travaillons en partenariat avec des
+                professionnels
+                de la santé pour améliorer la qualité de vie des plus vulnérables.</p>
+        </div>
+    </div>
+
+    <div class="cause-section">
+        <h2>Protection de l'Environnement et Préservation des Écosystèmes</h2>
+        <img src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/assets/2019/05/21-05-2019_-BI_Biodiversity-Day2.jpg/image1024x768.jpg"
+            alt="Protection de l'Environnement et Préservation des Écosystèmes">
+        <p>La préservation de l'environnement est cruciale pour un avenir durable. Nous nous engageons à protéger la
+            nature,
+            à préserver les écosystèmes et à lutter contre le changement climatique. Ensemble, nous pouvons agir pour
+            sauvegarder
+            notre planète.</p>
+        <div class="mission">
+            <h3>Notre Mission</h3>
+            <p>Notre mission est de mener des actions concrètes pour la protection de l'environnement, telles que la
+                reforestation,
+                la sensibilisation à la conservation de la biodiversité et la promotion des pratiques respectueuses de
+                l'environnement.</p>
+        </div>
+    </div>
+
+    <div class="cause-section">
+        <h2>Soutien aux Personnes Sans-Abri</h2>
+        <img src="https://www.carenews.com/sites/default/files/styles/large_actualites/public/2020-03/Capture%20d%27e%CC%81cran%202020-03-18%2010.26.11_0.png?itok=cvZS1U_Z"
+            alt="Soutien aux Personnes Sans-Abri">
+        <p>Les personnes sans-abri ont besoin d'aide et de soutien pour reconstruire leur vie. Nous nous engageons à
+            apporter
+            un soutien aux sans-abri en leur fournissant des abris, des repas chauds et des services d'accompagnement
+            social.
+            Ensemble, nous pouvons offrir une nouvelle chance à ceux qui en ont le plus besoin.</p>
+        <div class="mission">
+            <h3>Notre Mission</h3>
+            <p>Notre mission est de fournir un soutien holistique aux personnes sans-abri, en leur offrant un refuge
+                sûr,
+                des
+                ressources pour subvenir à leurs besoins essentiels et des programmes de réinsertion sociale pour les
+                aider
+                à
+                retrouver leur indépendance.</p>
+        </div>
+    </div>
+
+    <div class="donate-section">
+        <h2>Faites un Don</h2>
+        <p>Votre don peut changer des vies. Rejoignez-nous dans notre mission pour un monde meilleur en faisant un don
+            dès aujourd'hui.</p>
+        <button class="donate-button"><a style="color:white; text-decoration: none;"
+                href="{{url_for('new_donation')}}">Je fais un don</a>
+        </button>
+    </div>
     {% endblock %}
 </body>
 

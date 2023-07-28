@@ -1,32 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-    {% block content %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Somme Promise</th>
-                <th>Date de Promesse</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ don['nom'] }}</td>
-                <td>{{ don['prenom'] }}</td>
-                <td>{{ don['somme_promise'] }}</td>
-                <td>{{ don['date_promesse'] }}</td>
-            </tr>
-        </tbody>
-    </table>
-    {% endblock %}
-</body>
-
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            {% if don['pseudo'] %}
+            <th>Pseudo</th>
+            <th></th> {# Ajoutez une cellule vide pour le prénom #}
+            {% else %}
+            <th>Nom</th>
+            <th>Prénom</th>
+            {% endif %}
+            <th>Somme Promise</th>
+            <th>Date de Promesse</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if don['pseudo'] %}
+            <td>{{ don['pseudo'] }}</td>
+            <td></td> {# Ajoutez une cellule vide pour le prénom #}
+            {% else %}
+            <td>{{ don['nom'] }}</td>
+            <td>{{ don['prenom'] }}</td>
+            {% endif %}
+            <td>{{ don['somme_promise'] }}</td>
+            <td>{{ don['date_promesse'] }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
