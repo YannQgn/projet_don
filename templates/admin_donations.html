@@ -3,7 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h2 style=" margin-top:3em; color: #fa9372;">Liste des donateurs</h2>
+<h1>Liste des donateurs</h1>
 <div class="table-wrapper" style=" max-height: 500px; overflow-y: auto;">
     <table class="table">
         <thead>
@@ -30,17 +30,17 @@
                 <td>{{ don['nom'] }}</td>
                 <td>{{ don['prenom'] }}</td>
                 <td><a href="mailto:">{{ don['email'] }}</a></td>
-                <td>{{ don['somme_promise'] }}</td>
-                <td>{{ don['date_promesse'] }}</td>
+                <td>{{ don['somme_promise'] }}€</td>
+                <td>{{ don['date_promesse'].strftime('%d/%m/%Y %Hh%M') }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 <div class="pagination">
-    {% for page_num in range(1, total_entries // items_par_page + 1) %}
+    {% for page_num in range(1, total_entries // items_par_page + 2) %}
     <a href="{{ url_for('admin_donations', page=page_num) }}">{{ page_num }}</a>
     {% endfor %}
 </div>
-<h1>Total récolté : {{total}}€</h1>
+<h1 class="total_don dark_color">Total récolté : {{total}}€</h1>
 {% endblock %}

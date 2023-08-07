@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import data
 
+
 app = Flask(__name__)
 
 app.secret_key = '2RR3D3sd223D'

@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-<head> <!-- Required meta tags -->
+<head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename= 'h4a.png') }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css "
-        integrity="sha384- ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename= 'footer.css') }}">
     <title>{% block title %} {% endblock %}</title>
     <style>
@@ -63,12 +62,26 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-light bg-light"> <a class="navbar-brand"
-            href="{{ url_for('index')}}"><img class="logo"
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".navbar-toggler").on("click", function () {
+                $(".navbar-collapse").toggleClass("show");
+            });
+            $(".navbar-nav .nav-link").on("click", function () {
+                $(".navbar-collapse").removeClass("show");
+            });
+        });
+    </script>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index')}}"><img class="logo"
                 src="{{ url_for('static', filename= 'hope4all full no bg.png') }}" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data- target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria- label="Toggle navigation"> <span
-                class="navbar-toggler-icon"></span> </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active"> <a class="nav-link" href="{{url_for('index')}}">Accueil</a> </li>
@@ -78,7 +91,8 @@
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="{{url_for('logout')}}">Me déconnecter</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="#" style="color:black">Vous êtes connecté(e) en tant que
+                <li class="nav-item"><a class="nav-link no_after" href="#" style="color:black">Vous êtes connecté(e) en
+                        tant que
                         {{
                         session['username'] }}</a>
                 </li>
@@ -119,13 +133,9 @@
             toastElement.classList.add('toast');
             toastElement.innerText = message;
             document.body.appendChild(toastElement);
-
-            // Update the message with time remaining
             const timeRemainingElement = document.createElement('span');
             timeRemainingElement.innerText = `${duration / 1000}s`;
             toastElement.appendChild(timeRemainingElement);
-
-            // Update the time remaining every second
             const intervalId = setInterval(() => {
                 duration -= 1000;
                 timeRemainingElement.innerText = ` ${duration / 1000}s`;
@@ -143,19 +153,9 @@
         const message = `Merci à ${dernierDon.prenom} ${dernierDon.nom} pour son don de ${dernierDon.somme_promise}€ à ${heurePromesse}h${minutes} ❤️`;
         const duration = 5000;
         showToast(message, duration);
-
-    </script>
     </script>
     {% extends 'footer.html' %}
-    <script src=https://code.jquery.com/jquery-3.3.1.slim.min.js
-        integrity="sha384 q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js
-        integrity="sha384 UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
-        integrity="sha384 JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+
 </body>
 
 </html>

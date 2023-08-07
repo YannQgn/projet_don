@@ -5,7 +5,7 @@
         <tr>
             {% if don['pseudo'] %}
             <th>Pseudo</th>
-            <th></th> {# Ajoutez une cellule vide pour le prénom #}
+            <th></th> {# Ajoute une cellule vide pour le prénom #}
             {% else %}
             <th>Nom</th>
             <th>Prénom</th>
@@ -18,7 +18,7 @@
         <tr>
             {% if don['pseudo'] %}
             <td>{{ don['pseudo'] }}</td>
-            <td></td> {# Ajoutez une cellule vide pour le prénom #}
+            <td></td> {# Ajoute une cellule vide pour le prénom #}
             {% else %}
             <td>{{ don['nom'] }}</td>
             <td>{{ don['prenom'] }}</td>
