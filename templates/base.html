@@ -131,6 +131,7 @@
         function showToast(message, duration) {
             const toastElement = document.createElement('div');
             toastElement.classList.add('toast');
+            toastElement.classList.add('show');
             toastElement.innerText = message;
             document.body.appendChild(toastElement);
             const timeRemainingElement = document.createElement('span');
